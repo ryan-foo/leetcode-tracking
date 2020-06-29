@@ -69,7 +69,8 @@ This ensures that its not possible to have a situation where we update the `high
 
 It also has a space complexity of `O(1)`, or more specifically, `O(2)` as we only maintain two variables (`min_so_far` and `highest_difference`).
 
-```class Solution:
+```
+class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         if len(prices) < 2:
             return 0
@@ -82,4 +83,5 @@ It also has a space complexity of `O(1)`, or more specifically, `O(2)` as we onl
             if min_so_far > price:
                 min_so_far = price
 
-        return highest_difference```
+        return highest_difference
+```
