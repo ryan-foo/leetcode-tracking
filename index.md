@@ -5,10 +5,10 @@ layout: default
 
 Used to track my LeetCode progress.
 
-Check out my [main website](https://ryan-foo.com)!
+Check out my [main website](https://ryanfoo.com)!
 
 
-I am following [Yang Shun's algorithm guide book](https://yangshun.github.io/tech-interview-handbook/algorithms/array).
+I am following [Yang Shun's algorithm guide book](https://yangshun.github.io/tech-interview-handbook/best-practice-questions/).
 
 [Week 1 (Week of 29/06/2020)](https://github.com/ryan-foo/leetcode-tracking/week-1)
 
