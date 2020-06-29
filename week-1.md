@@ -59,4 +59,27 @@ class Solution:
 
 ### 3. [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
-Not completed yet.
+A brute force strategy would be `O(n)^2`, where `n` is the length of the list of prices. 
+
+A better strategy, which runs in `O(n)` time, would involve maintaining the highest difference between buy and sell so far. As we loop through the list of prices, we check if the current price is greater than the minimum so far. If so, we take that difference (which is the profit), and update our highest price.
+
+Order is important here: afterwards, if the `min_so_far` is greater than the price, then we can update `min_so_far`. This ensures that in the next iteration of the loop, the `highest_difference` will be updated using the new `min_so_far`.
+
+This ensures that its not possible to have a situation where we update the `highest_difference` with a faulty `min_so_far` (i.e, a buy happening after a sell).
+
+It also has a space complexity of `O(1)`, or more specifically, `O(2)` as we only maintain two variables (`min_so_far` and `highest_difference`).
+
+```class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices) < 2:
+            return 0
+        
+        min_so_far = prices[0]
+        highest_difference = min(0, prices[1] - prices[0])
+        
+        for price in prices:
+            highest_difference = max(price - min_so_far, highest_difference)
+            if min_so_far > price:
+                min_so_far = price
+
+        return highest_difference```
