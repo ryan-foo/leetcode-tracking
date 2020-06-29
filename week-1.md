@@ -1,7 +1,7 @@
 # Week 1
 -------------------------
 
-## (`<username>.github.io`)
+## `(ryan-foo.github.io)`
 
 ### 1. [Two Sum](https://leetcode.com/problems/two-sum/)
 
