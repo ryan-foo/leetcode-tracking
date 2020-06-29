@@ -1,9 +1,12 @@
 theme: jekyll-theme-minimal
-title: GitHub pages template
-description: A simple template based on minimal jekyll theme
+title: Leetcode Tracker
+description: Tracking Ryan Foo's algorithms progress
 show_downloads: True
 navigation:
   - title: Home
     url: /
-  - title: Setup
-    url: setup
+  - title: Week 1
+    url: /week-1
+  - title: Week 2
+    url: /week-2
+  

@@ -1,9 +1,11 @@
-# gh-pages-template
-A GitHub pages template based on [minimal Jekyll theme.](https://github.com/pages-themes/minimal)
-Couple of additional futures such as a navigation bar and a full page layout are added to the minimal theme.
+# Leetcode Tracker
 
-- [Preview the theme](https://kbsezginel.github.io/gh-pages-template/)
-- [See the original theme in action](https://pages-themes.github.io/minimal/)
+Forked from [kbsezginel's theme](https://kbsezginel.github.io/gh-pages-template/).
 
-## Usage
-See [setup and customization instructions](https://kbsezginel.github.io/gh-pages-template/setup) to start using the theme.
+Used to track my leetcode progress. Idea from [alaukiknpant](https://github.com/alaukiknpant/gh-pages-template).
+
+I am following [Yang Shun's algorithm guide book.](https://yangshun.github.io/tech-interview-handbook/algorithms/array).
+
+[Week 1 (Week of 29/06/2020)](/week-1)
+
+[Week 2 (Week of 06/07/2020)](/week-2)
