@@ -85,3 +85,48 @@ class Solution:
 
         return highest_difference
 ```
+
+### 4. [Valid Anagram](https://leetcode.com/problems/valid-anagram/)
+
+One way to do this might be to sort, and see if the sorted output is equal. This would have a time complexity of `O(n logn)` in the worst case, where `n` is the length of an input, (`s`). We assume that `s` and `t` have the same length, otherwise they would not be anagrams of each other.
+
+A more efficient alternative would be to keep track of the number of letters, and then remove the letters accordingly.
+
+We can then check if the count of all letters are zero, which means every letter in `s` corresponds to some letter in `t` uniquely. 
+
+We can accomplish this by creating a dictionary from `s` where the keys are letters and the values are the count of the letters in `s`. This action is `O(n)`. Then, we can 
+
+This has an overall time complexity of `O(n)`, as creation of a dictionary from a list has a time complexity of `O(n)`. Additionally, iterating through `t` is also O(n), and membership check is `O(1)` for each membership check in the loop, leading to an overall `O(n)` run time for the second for loop.
+
+Finally, we check if after removing all letters that are part of `t` from the dictionary, the count of all letters is zero. If so, then the words are anagrams of each other!
+
+```
+Instead of initializing a dictionary with the keys being the letters and the values being the count,
+A defaultdict abstracts this for us and provides us a helpful interface to count what we want to count.
+A hashmap of letters.
+
+from collections import defaultdict
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        
+        # Assume input only contains lowercase alphabets, but also works for unicode characters
+        
+        d = defaultdict(int)
+        
+        for char in s:
+            d[char] += 1
+            
+        for char in t:
+            if char in d:
+                d[char] -= 1
+                if d[char] < 0:
+                    return False
+            else:
+                return False
+        
+        # get all values and ensure that it is equal to 0
+        return len([x for x in d.values() if x != 0]) == 0
+```
