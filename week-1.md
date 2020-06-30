@@ -130,3 +130,49 @@ class Solution:
         # get all values and ensure that it is equal to 0
         return len([x for x in d.values() if x != 0]) == 0
 ```
+
+### 5. [Valid Parantheses](https://leetcode.com/problems/valid-parentheses)
+
+So we could have used a counter based approach if the problem were a reduced version of itself (i.e, count the number of opening brackets as we move through the string, and subtract whenever we had a closing bracket. But this would not fulfil the second condition, which is for opening brackets to be closed in the correct order.
+
+But this is not the problem we are facing. I did have the intuition on this to use a stack data structure, however I borrowed the optimized mapping of closing brackets to opening brackets from Leetcode's Solution as it was far more elegant, although less explicit than a character matching:  for example, checking `(if char == '{' and stack.pop() == '}')`.
+
+The solution is detailed below: Whenever we encounter an open bracket, push it onto the stack.
+Whenever we encounter a close bracket, we pop and check if the open bracket that has been popped is matching the current closing bracket we're looking at. If it does, continue.
+
+If it doesn't, or the stack is empty, return false.
+
+At the end of it all, the stack should be empty. If it is not empty, then we have too many opening brackets for the amount of closing brackets we were given, and therefore it is not well formed.
+
+This problem: a throwback to Aquinas' Intro to CS class.
+
+```
+class Solution:
+    def isValid(self, s: str) -> bool:
+        # We can use a stack data structure
+        # Whenever we encounter an open bracket, push it onto stack
+        # Whenever we encounter a close bracket, pop
+        # If, when we pop, the open bracket popped is NOT matching the close bracket, then return false (Example 4)
+        
+        # We can use a list for our stack
+        stack = []
+        
+        mapping = {')': '(', '}': '{', ']': '['}
+        
+        for char in s:
+            # It is a closing bracket
+            if char in mapping:
+                
+                # Pop top most element from stack
+                top_element = stack.pop() if stack else None
+                
+                if mapping[char] != top_element:
+                    return False
+            else:
+                #We have an opening bracket
+                stack.append(char)
+                
+        # If stack is empty...
+        return not stack 
+```
+
