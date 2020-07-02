@@ -10,9 +10,9 @@ Check out my [main website](https://ryanfoo.com)!
 
 I am following [Yang Shun's algorithm guide book](https://yangshun.github.io/tech-interview-handbook/best-practice-questions/).
 
-[Week 1 (Week of 29/06/2020)](https://github.com/ryan-foo/leetcode-tracking/week-1)
+[Week 1 (Week of 29/06/2020)](https://ryan-foo.github.io/leetcode-tracking/week-1)
 
-[Week 2 (Week of 06/07/2020)](https://github.com/ryan-foo/leetcode-tracking/week-2)
+[Week 2 (Week of 06/07/2020)](https://ryan-foo.github.io/leetcode-tracking/week-2)
 
 Idea from [alaukiknpant](https://github.com/alaukiknpant/gh-pages-template).
 

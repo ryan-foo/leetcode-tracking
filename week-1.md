@@ -189,6 +189,8 @@ One array for left, right.
 
 For each index i, we make use of the product of all the numbers to the left of it (which is contained in l at index i), and multiply by the product of all the numbers to the right (which is contained in r at index i).
 
+This is O(n), without using division, and with `O(n)` space complexity for maintaining two arrays of length `n`, where `n` is the length of the input array.
+
 ```
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
@@ -213,3 +215,10 @@ class Solution:
             
         return answer
 ``` 
+
+
+### 7. [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+
+The brute force solution is to enumerate all possible sub-arrays and store their sums, before taking the max of those sums. This would not be tenable and definitely would not be the optimal solution.
+
+The problem statement itself suggests trying a divide-and-conquer strategy after having achieved an O(n) solution.
