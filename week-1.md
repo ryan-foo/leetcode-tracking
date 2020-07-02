@@ -176,3 +176,40 @@ class Solution:
         return not stack 
 ```
 
+### 6. [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
+
+Of course, the brute force solution would be to iterate through till i and collect the product, skip i, then collect the product of i till len(nums), and multiply those two numbers together, before inserting into the output array.
+
+However, that's O(n)^2 in the worst case as we do n-1 multiplications, n times (for the length of the list).
+
+The key insight came from the LeetCode Solutions.
+
+We can create arrays that contain products of left and the right of the index for each given index i.
+One array for left, right.
+
+For each index i, we make use of the product of all the numbers to the left of it (which is contained in l at index i), and multiply by the product of all the numbers to the right (which is contained in r at index i).
+
+```
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+
+        
+        l = [0] * len(nums)
+        r = [0] * len(nums)
+        answer = [0] * len(nums)
+        
+        l[0] = 1
+        
+        for i in range(1, len(nums)):
+            l[i] = l[i-1] * nums[i-1]
+        
+        r[len(nums) - 1] = 1
+        
+        for i in reversed(range(len(nums) - 1)):
+            r[i] = r[i+1] * nums[i+1]
+        
+        for i in range(len(nums)):
+            answer[i] = l[i] * r[i]
+            
+        return answer
+``` 
