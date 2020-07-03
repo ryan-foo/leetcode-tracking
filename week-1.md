@@ -221,4 +221,36 @@ class Solution:
 
 The brute force solution is to enumerate all possible sub-arrays and store their sums, before taking the max of those sums. This would not be tenable and definitely would not be the optimal solution.
 
-The problem statement itself suggests trying a divide-and-conquer strategy after having achieved an O(n) solution.
+One possible solution would be to iterate through the list and keep track of the current sum. As we are iterating, whenever the sum falls below 0, we can just restart from the number we are on (effectively creating a new contiguous subarray). Otherwise, we continue adding the seen numbers to the subarray.
+
+At any point, if the current sum is larger than the maximum sum we've seen so far, we replace `max_sum`. At the end of the for loop, we return `max_sum`.
+
+This solution has `O(n)`, where `n` is the length of the list, time complexity as you iterate through the list once.
+
+This problem is definitely similar to 3. Best Time to Buy and Sell Stock in terms of the intuition required.
+
+It also has `O(1)` space complexity as you only maintain a `cur_sum` and `max_sum` variable.
+
+```
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        # Approach: iterate through the subarrays
+        # Reset subarray to the current number if adding the previous number brought it to less than 0
+        
+        cur_sum, max_sum = 0, nums[0]
+        
+        for n in nums:
+            if cur_sum < 0:
+                cur_sum = n
+                
+            else:
+                cur_sum += n
+            
+            if cur_sum > max_sum:
+                max_sum = cur_sum
+        
+        return max_sum
+```
+
+### 8. [3 Sum](https://leetcode.com/problems/3sum/)
+
