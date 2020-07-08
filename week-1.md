@@ -299,3 +299,73 @@ class Solution:
                     l += 1; r -= 1
         return res
 ```
+
+### 9. [Merge Intervals](https://leetcode.com/problems/merge-intervals)
+
+Insights: You probably want to `append` where you can since its O(1), instead of modifying the input array. This keeps things functional instead of iterative, which makes your program cleaner to understand!
+
+Python specific things to remember: `[-1]` to easily access last element in the array. `if not array` is the same as `if len(array) == 0`, but cool. Iterate with elements instead of indices where you can.
+
+Sort `intervals` by its first digit. Iterate through intervals -- if you have no current interval in the result array, then add it to the result array. If the beginning of the new interval is larger than the previous interval, then append it. Otherwise, if it is equal to or greater than the previous interval, then merge it.
+
+It is `O(nlogn)` runtime as that is the runtime of sorting, which dominates a simple walk of interval. Append is `O(1)` amortized and checks are also `O(1)`.
+
+It is `O(1)` space complexity excluding the result array.
+
+Final:
+
+```
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        
+        intervals = sorted(intervals, key = lambda interval: interval[0])
+        
+        merged = []
+        
+        for interval in intervals:
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
+            
+            if merged[-1][1] >= interval[0]:
+                merged[-1][1] = max(merged[-1][1], interval[1])
+        
+        return merged
+```
+
+My initial attempt,
+which fails on the `[0,4], [3,5]` case...
+
+```
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        
+        # Can we assume intervals are sorted? It looks like not, so we should sort them first.
+        
+        # Sort intervals using first number as a key
+        
+        intervals = sorted(intervals, key=lambda interval: interval[0])
+        
+        # Compare 2nd number of interval i [a,b] (b) with 1st number of interval i + 1 [c,d] (c)
+        if len(intervals) == 2:
+            if intervals[0][1] >= intervals[1][0]:
+                intervals[0][1] = max(intervals[0][1], intervals[1][1])
+                intervals.remove(intervals[1])
+                merge(self, intervals)
+        
+        for i in range(len(intervals) - 2):
+            if intervals[i][1] >= intervals[i+1][0]:
+                # merge
+                intervals[i][1] = max(intervals[i][1], intervals[i+1][1])
+                intervals.remove(intervals[i+1])
+                # after we've merged, we want to call the merge function again on the now modified array
+                merge(self, intervals)
+            
+            # Repeat again for the next iteration
+        
+        # If b >= c, then call merge on the 1st interval
+        
+        # Merge should replace [a,b] with [a,c] and remove [c,d] from the array
+        # If there are no more intervals (we hit the end of the list without detecting an interval, return the list)
+        return intervals
+```
+
