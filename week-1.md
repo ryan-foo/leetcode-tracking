@@ -254,3 +254,48 @@ class Solution:
 
 ### 8. [3 Sum](https://leetcode.com/problems/3sum/)
 
+Idea from Leetcode solutions. ([christopherwu0529](https://leetcode.com/problems/3sum/discuss/232712/Best-Python-Solution-\(Explained\)), who apparently has 1008 stars. Go them!)
+
+We want to find all combinations of `a, b, c` in the array such that `a + b + c = 0`. The idea is to sort the list and iterate through every combination of `a, b, c` by using pointers. We keep `a` fixed and then move pointers for `b` and `c` accordingly till we find a combination where `b + c = -a`.
+
+We have two pointers: `l`, that represents `b` and starts from the left of the sorted list, and `r`, that represents `c` and starts from the right of the sorted list.
+
+We start moving `i`, which represents `a` from `0` to `n-2`, where `n` is the length of the list. In each iteration, we consider `l` from `i+1` onwards, and `r` from the back of the list.
+
+If the result of `nums[i] + nums[l] + nums[r]`, or `a+b+c`, is smaller than 0, the sum is too small and we should increment `l`. Conversely, if the result of `a+b+c` is smaller than 0, then our number is too big and we should decrement `r`.
+
+We also should stop considering `nums[i]` when `a` is positive as there will be no combinations of `b` and `c` past `nums[i]` that will be negative (since we consider `b` and `c` past the positive number `a`, and the list is sorted!)
+
+The runtime is `O(n^2)`. Sorting is worst case `O(nlogn)`. In the main loop (`i`), which runs `n` times, we have a while loop that, in the worst case, traverses the length of the list by moving the pointers up to `n` times. This nested loop leads to an `O(n^2)` runtime.
+
+The space complexity is `O(1)` as we do not initialize any new data structures beyond the desired result array.
+
+Optimization:
+ We want to decrement `l` and `r` such that we skip to the next available number, since we don't want to perform a duplicate calculation.
+
+```
+class Solution:
+    def threeSum(self, nums):
+        res = []
+        nums.sort()
+        for i in range(len(nums)-2):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            if nums[i] > 0:
+                break
+            l, r = i+1, len(nums)-1
+            while l < r:
+                s = nums[i] + nums[l] + nums[r]
+                if s < 0:
+                    l +=1 
+                elif s > 0:
+                    r -= 1
+                else:
+                    res.append((nums[i], nums[l], nums[r]))
+                    while l < r and nums[l] == nums[l+1]:
+                        l += 1
+                    while l < r and nums[r] == nums[r-1]:
+                        r -= 1
+                    l += 1; r -= 1
+        return res
+```
