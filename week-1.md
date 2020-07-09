@@ -369,3 +369,35 @@ class Solution:
         return intervals
 ```
 
+### 10. [Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+
+To find if an anagram is a string of another, we can sort them and see if they are equal. We can use the sorted string in order to group up anagrams. We initialize a dictionary where the keys are the sorted strings and the values are the anagrams of the sorted string.
+
+If its the first time we've seen it, we add it to our dictionary, with the original value as a string. If it is not the first time we've seen the sorted string, we can append that to the existing value associated with the key.
+
+Afterwards, the values of our dictionary are precisely the grouped anagrams!
+
+Very clean solution I'm happy with :)
+
+Runtime: O(n * klogk) where `k` is the average length of the strings.
+Space complexity: O(n * k) where `n` is the number of strings and `k` is the average length of a string.
+
+
+```
+from collections import defaultdict
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # how to test if one is an anagram? sort and see if it is equal (nlogn)
+        # key is sorted value, value is a list containing all anagrams of sorted value seen thus far
+        
+        d = defaultdict(str)
+        
+        for string in strs:
+            if ''.join(sorted(string)) in d:
+                d[''.join(sorted(string))].append(string)
+            else:
+                d[''.join(sorted(string))] = [string]
+        
+        return d.values()
+```
