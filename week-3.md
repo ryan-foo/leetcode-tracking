@@ -99,7 +99,7 @@ class Solution:
         return balanced[0]
 ```
 
-### 6. [Odd Even Linked List]()
+### 6. [Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/)
 
 This runs in `O(n)` run time, where `n` is the number of nodes in the linked list, as we traverse the linked list only once. It is also `O(1)` space complexity as we do it in place (i.e, we do not instantiate new lists to hold the nodes, nor do we create new linked lists beyond what is required for the solution.) 
 
@@ -136,4 +136,30 @@ class Solution:
         odds.next = evens_head.next
         
         return odds_head.next
+```
+
+### 7. [Valid Parantheses](https://leetcode.com/problems/valid-parentheses/)
+
+Big classic. `O(n)` runtime where `n` is the length of the string since we traverse it. `O(n)` space complexity because in the worst case we append an entire string before returning an error.
+
+We build a mapping of openers `{[(` to closers `)]}`. We utilize a stack data structure and push if its an opener. If its a closer, we say 'hey mate, are you the closer we're looking for?' We do that by comparing the closer to the opener from the top of the stack.
+
+Coffee is for closers, but only if they're well balanced. Make sure it doesn't overflow.
+
+```
+class Solution:
+    def isValid(self, s: str) -> bool:
+        corresponding_brackets = {'{':'}', '(':')', '[': ']'}
+        stack = []
+        for char in s:
+            if char in corresponding_brackets.keys():
+                stack.append(char)
+            else:
+                if len(stack) == 0 or char != corresponding_brackets[stack.pop()]:
+                    return False
+        return stack == []
+            
+        
+# Stack to see if its valid
+# Dictionary to map { to } and ( to ) and so on
 ```
