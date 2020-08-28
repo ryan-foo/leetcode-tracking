@@ -53,3 +53,37 @@ class Solution:
                 left = mid + 1
         return False
 ```
+
+### [2. Missing Number](https://leetcode.com/problems/missing-number/)
+
+The intuition is that we can add up all the numbers, and also find the number we expect to see. Then the missing number is precisely the expected sum minus the total sum of the list.
+
+We use O(1) space complexity and O(n) runtime. It is O(1) space as we only initialize a variable expected_sum and total_sum, and not a full list. It is O(n) time complexity with respect to the size of the list as we iterate through the list of nums in order to get the expected sum.
+
+```
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        expected_sum = 0
+        for i in range(len(nums) +1):
+            expected_sum += i
+        total_sum = sum(nums)
+        return (expected_sum - total_sum)
+```
+
+### [3. Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/)
+
+The proof here is in the pigeonhole principle -- if you have n holes, and n+1 pigeons, then necessarily 1 pigeon is a lonely boy.
+
+If we sort, the duplicate pigeons will be next to each other. Squawk away friend, we caught you and we know who you are.
+
+`O(nlogn)` time complexity. O(1) space complexity (as we sort in place.) Things I learnt: the sorting in place method for python (`nums.sort()`), as compared to sorting the list and storing it in a variable (`sorted_nums = sorted(nums)`).
+
+```
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        # Pigeonhole principle
+        nums.sort()
+        for i in range(1, len(nums)):
+            if nums[i-1] == nums[i]:
+                return nums[i]
+```
