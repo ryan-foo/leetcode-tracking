@@ -9,3 +9,7 @@ I am following [Yang Shun's algorithm guide book.](https://yangshun.github.io/te
 [Week 1 (Week of 29/06/2020)](https://github.com/ryan-foo/leetcode-tracking/week-1)
 
 [Week 2 (Week of 06/07/2020)](https://github.com/ryan-foo/leetcode-tracking/week-2)
+
+[Week 3](https://github.com/ryan-foo/leetcode-tracking/week-3)
+
+[Week 4]((https://github.com/ryan-foo/leetcode-tracking/week-4)
