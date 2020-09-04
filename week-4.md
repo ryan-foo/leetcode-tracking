@@ -89,7 +89,32 @@ class Solution:
 ```
 
 ### [4. Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern)
- 
+
+This is a different approach, which takes the insight that the beginning of a substring is going to be repeated many times.
+
+Additionally, if it is perfectly repeated and the substring is correct (i.e the answer is True), then dividing the length of the string by the length of the substring should give us a whole number (times to repeat).
+
+We begin by iteratively adding to the substring from the left side.
+
+Then we check whether repeating the substring that many times (times to repeat) gives us the original string. If so, return True.
+
+If we've made it through half the list, then the substrings are not equal and we can just stop searching and return False.
+
+The time complexity is `O(n^2)` where `n` is the length of the input string. This is because appending to a substring is `O(n)` and we repeat that operation `n/2` times in the worst case. Additionally, equality comparison is `O(n)` where `n` is the length of the substring being compared. 
+
+The space complexity is `O(n/2)` as we maintain the current substring up to `n/2`.
+
+```
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        curr_substring = ''
+        for i in range(0, len(s) // 2):
+            curr_substring += s[i]
+            times_to_repeat = len(s) // len(curr_substring)
+            if ((curr_substring * times_to_repeat) == s):
+                return True
+        return False
+```
 ```
 class Solution:
     def repeatedSubstringPattern(self, s: str) -> bool:
