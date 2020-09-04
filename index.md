@@ -14,6 +14,10 @@ I am following [Yang Shun's algorithm guide book](https://yangshun.github.io/tec
 
 [Week 2 (Week of 06/07/2020)](https://ryan-foo.github.io/leetcode-tracking/week-2)
 
+[Week 3](https://ryan-foo.github.io/leetcode-tracking/week-3)
+
+[Week 4](https://ryan-foo.github.io/leetcode-tracking/week-4)
+
 Idea from [alaukiknpant](https://github.com/alaukiknpant/gh-pages-template).
 
 Forked from [kbsezginel's theme](https://kbsezginel.github.io/gh-pages-template/).
