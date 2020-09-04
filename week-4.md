@@ -87,3 +87,17 @@ class Solution:
             if nums[i-1] == nums[i]:
                 return nums[i]
 ```
+
+### [4. Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern)
+ 
+```
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        curr_substring = ''
+        for i in range(0, len(s) // 2):
+            curr_substring += s[i]
+            times_to_repeat = len(s) // len(curr_substring)
+            if ((curr_substring * times_to_repeat) == s):
+                return True
+        return False
+```
